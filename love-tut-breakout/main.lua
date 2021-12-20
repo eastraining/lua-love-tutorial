@@ -25,11 +25,7 @@ love.draw = function()
   local ball_x, ball_y = ball.body:getWorldCenter()
   love.graphics.circle('fill', ball_x, ball_y, ball.shape:getRadius())
   love.graphics.polygon('line', paddle.body:getWorldPoints(paddle.shape:getPoints()))
-  love.graphics.polygon('line', boundary_top.body:getWorldPoints(boundary_top.shape:getPoints()))
-  love.graphics.polygon('line', boundary_bottom.body:getWorldPoints(boundary_bottom.shape:getPoints()))
-  love.graphics.polygon('line', boundary_left.body:getWorldPoints(boundary_left.shape:getPoints()))
-  love.graphics.polygon('line', boundary_right.body:getWorldPoints(boundary_right.shape:getPoints()))
-
+  
   if paused then
     love.graphics.print('PAUSED', 375, 100)
   end

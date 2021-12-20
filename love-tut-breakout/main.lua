@@ -1,13 +1,8 @@
 -- main.lua
 
 -- import world and entities
+local entities = require('entities')
 local world = require('world')
-local ball = require('entities/ball')
-local paddle = require('entities/paddle')
-local boundary_top = require('entities/boundary-top')
-local boundary_bottom = require('entities/boundary-bottom')
-local boundary_left = require('entities/boundary-left')
-local boundary_right = require('entities/boundary-right')
 
 -- Boolean to keep track of whether our game is paused or not
 local paused = false
@@ -22,10 +17,10 @@ local key_map = {
 }
 
 love.draw = function()
-  local ball_x, ball_y = ball.body:getWorldCenter()
-  love.graphics.circle('fill', ball_x, ball_y, ball.shape:getRadius())
-  love.graphics.polygon('line', paddle.body:getWorldPoints(paddle.shape:getPoints()))
-  
+  for _, entity in ipairs(entities) do
+    if entity.draw then entity:draw() end
+  end
+
   if paused then
     love.graphics.print('PAUSED', 375, 100)
   end
